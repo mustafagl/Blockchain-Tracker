@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blockchain Data</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Blockchain Data</h1>
+    <ul>
+    {% for block in blocks %}
+        <li>
+            <strong>PrevHash:</strong> {{ block.PrevHash }}<br>
+            <strong>Hash:</strong> <a href="/transactions/{{ block.Hash }}">{{ block.Hash }}</a><br>
+            <strong>Data:</strong> <span class="short">{{ block.Data[:100] }}...</span><span class="long" style="display:none;">{{ block.Data }}</span><br>
+            <button onclick="toggleData(this)">Show More</button><br>
+            <strong>MerkleRoot:</strong> {{ block.MerkleRoot }}<br>
+            <strong>Nonce:</strong> {{ block.Nonce }}<br>
+            <strong>Timestamp:</strong> {{ block.Timestamp }}<br>
+            <strong>MinerName:</strong> {{ block.MinerName }}<br>
+        </li>
+    {% endfor %}
+    </ul>
+    <script>
+        function toggleData(button) {
+            var shortText = button.previousElementSibling.previousElementSibling.previousElementSibling;
+            var longText = button.previousElementSibling.previousElementSibling;
+            if (longText.style.display === "none") {
+                shortText.style.display = "none";
+                longText.style.display = "inline";
+                button.textContent = "Show Less";
+            } else {
+                shortText.style.display = "inline";
+                longText.style.display = "none";
+                button.textContent = "Show More";
+            }
+        }
+    </script>
+</body>
+</html>

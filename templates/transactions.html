@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="transaction-container">
+        <h1>Transactions</h1>
+        {% for transaction in transactions %}
+        <div class="transaction-box">
+            <ul>
+                <li><strong>Sender:</strong> {{ transaction.Sender }}</li>
+                <li><strong>Recipient:</strong> {{ transaction.Recipient }}</li>
+                <li><strong>Amount:</strong> {{ transaction.Amount }}</li>
+                <li><strong>PublicKey:</strong> {{ transaction.PublicKey }}</li>
+                <li><strong>Signature:</strong> {{ transaction.Signature }}</li>
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
